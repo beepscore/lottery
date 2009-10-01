@@ -10,6 +10,9 @@
 
 @interface LotteryEntry : NSObject {
     // instance variables
+    
+    // TODO:  Replace deprecated NSCalendarDate.
+    // Apple says use suitable combinations of NSCalendar, NSDate, and NSDateComponents.
     NSCalendarDate *entryDate;
     int firstNumber;
     int secondNumber;

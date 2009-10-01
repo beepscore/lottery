@@ -1,3 +1,11 @@
+// lottery.m
+//
+// Steve Baker 
+// UW CP-120 Certificate in iPhone and Cocoa Development
+// Q1 Intro to Programming in Objective-C and the Cocoa Framework.
+// Homework assignment 28 Sep 09 part 2.
+// Ref Hillegass Ch 03 including challenge pg 63, Ch 04.
+
 #import <Foundation/Foundation.h>
 #import "LotteryEntry.h"
 
