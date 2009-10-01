@@ -32,7 +32,8 @@ int main (int argc, const char * argv[]) {
         // Add the LotteryEntry object to the array
         [array addObject:newEntry];
         [newEntry release];
-    } 
+    }
+    // Ref Hillegass Ch 04 pg 68
     // Done with 'now'
     [now release];
     now = nil;
