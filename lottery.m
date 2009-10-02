@@ -5,6 +5,8 @@
 // Q1 Intro to Programming in Objective-C and the Cocoa Framework.
 // Homework assignment 28 Sep 09 part 2.
 // Ref Hillegass Ch 03 including challenge pg 63, Ch 04.
+// SB Replaced deprecated NSCalendarDate.
+// Used NSCalendar, NSDate, and NSDateComponents.
 
 #import <Foundation/Foundation.h>
 #import "LotteryEntry.h"
@@ -14,7 +16,9 @@ int main (int argc, const char * argv[]) {
     NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
     
     //Create the date object
-    NSCalendarDate *now = [[NSCalendarDate alloc] init];
+    NSDate *now = [[NSDate alloc] init];
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *dateComps = [[NSDateComponents alloc] init];
     
     // Seed the random number generator
     srandom(time(NULL));
@@ -24,14 +28,10 @@ int main (int argc, const char * argv[]) {
     int i;
     for (i = 0; i < 10; i++) {
         
-        // Create a date/time object that is 'i' weeks from now
-        NSCalendarDate *iWeeksFromNow;
-        iWeeksFromNow = [now dateByAddingYears:0
-                                        months:0
-                                          days:(i * 7)
-                                         hours:0 
-                                       minutes:0 
-                                       seconds:0];
+        // Create a NSDate object that is 'i' weeks from now
+        NSDate *iWeeksFromNow;
+        [dateComps setWeek:i];
+        iWeeksFromNow = [gregorian dateByAddingComponents:dateComps toDate:now options:0];
         
         // Create a new instance of LotteryEntry
         LotteryEntry *newEntry = [[LotteryEntry alloc]
@@ -41,10 +41,14 @@ int main (int argc, const char * argv[]) {
         [array addObject:newEntry];
         [newEntry release];
     }
+
     // Ref Hillegass Ch 04 pg 68
-    // Done with 'now'
     [now release];
+    [gregorian release];
+    [dateComps release];
     now = nil;
+    gregorian = nil;
+    dateComps = nil;
 
     // Fast enumerate loop print each entry
     for (LotteryEntry *entryToPrint in array) {

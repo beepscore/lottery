@@ -11,9 +11,7 @@
 @interface LotteryEntry : NSObject {
     // instance variables
     
-    // TODO:  Replace deprecated NSCalendarDate.
-    // Apple says use suitable combinations of NSCalendar, NSDate, and NSDateComponents.
-    NSCalendarDate *entryDate;
+    NSDate *entryDate;
     int firstNumber;
     int secondNumber;
 }
@@ -22,14 +20,14 @@
 // - (NSString *)description;
 
 // designated initializer.  Ref Hillegass pg 57
-- (id)initWithEntryDate:(NSCalendarDate *)theDate;
+- (id)initWithEntryDate:(NSDate *)theDate;
 
 // accessor methods
 // setter
-- (void)setEntryDate:(NSCalendarDate *)date;
+- (void)setEntryDate:(NSDate *)date;
 
 // getters
-- (NSCalendarDate *)entryDate;
+- (NSDate *)entryDate;
 - (int)firstNumber;
 - (int)secondNumber;
 

@@ -10,11 +10,11 @@
 // So, override the superclass' designated initializer.  Ref Hillegass pg 57
 - (id)init {
     
-    return [self initWithEntryDate:[NSCalendarDate calendarDate]];
+    return [self initWithEntryDate:[NSDate date]];
 }
 
 // designated initializer.  Ref Hillegass pg 57
-- (id)initWithEntryDate:(NSCalendarDate *)theDate {
+- (id)initWithEntryDate:(NSDate *)theDate {
     
     // call super's designated initializer
     if (![super init])
@@ -29,7 +29,7 @@
 
 // accessor methods
 // setter
-- (void)setEntryDate:(NSCalendarDate *)date {
+- (void)setEntryDate:(NSDate *)date {
     
     // ref Hillegass pg 75-77
     [date retain];
@@ -38,7 +38,7 @@
 }
 
 // getters.  The method has the same name as the instance variable
-- (NSCalendarDate *)entryDate {
+- (NSDate *)entryDate {
     
     return entryDate;
 }
@@ -55,10 +55,14 @@
 
 - (NSString *)description {
     
-    return [NSString stringWithFormat:@"%@ = %d and %d", 
-            // Change date format string.  Ref Hillegass pg 51, 54, 63.
-            [[self entryDate] descriptionWithCalendarFormat:@"%A %d %B %Y"],
-            [self firstNumber], [self secondNumber]];
+    // Change date format.  Ref Hillegass pg 51, 54, 63.
+    NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];            
+    [outputFormatter setDateFormat:@"HH:mm 'on' EEEE MMMM d"];
+    NSString *myDateString = [outputFormatter stringFromDate:[self entryDate]];
+    [outputFormatter release];
+
+    return [NSString stringWithFormat:@"%@, %d, %d",
+            myDateString, [self firstNumber], [self secondNumber]];
 }
 
 - (void)dealloc {
