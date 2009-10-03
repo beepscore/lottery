@@ -63,7 +63,7 @@
     // Use NSDateFormatter -setDateFormat: 
     // instead of deprecated NSCalendarDate -descriptionWithCalendarFormat:
     NSDateFormatter *myDateFormatter = [[NSDateFormatter alloc] init];            
-    [myDateFormatter setDateFormat:@"EEEE d MMMM YYYY"];
+    [myDateFormatter setDateFormat:@"EEEE dd MMMM yyyy"];
     NSString *myDateString = [myDateFormatter stringFromDate:[self entryDate]];
     [myDateFormatter release];
 
