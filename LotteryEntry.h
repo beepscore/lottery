@@ -1,23 +1,21 @@
 //
 //  LotteryEntry.h
-//  lottery
-//
-//  Created by Steve Baker on 9/6/09.
-//  Copyright 2009 Beepscore LLC. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
 @interface LotteryEntry : NSObject {
-    // instance variables
-    
+    // instance variables    
     NSDate *entryDate;
     int firstNumber;
     int secondNumber;
 }
-// Theses declaration in header are optional because
-// we are overriding the declaration in parent class NSObject
+// This declaration in header is optional because
+// we are overriding the parent class methods
 // - (NSString *)description;
+
+// better not to show this so readers see only designated initializer?
+//- (id)init;
 
 // designated initializer.  Ref Hillegass pg 57
 - (id)initWithEntryDate:(NSDate *)theDate;

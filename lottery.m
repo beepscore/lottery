@@ -1,3 +1,4 @@
+//
 // lottery.m
 //
 // Steve Baker 
@@ -6,7 +7,7 @@
 // Homework assignment 28 Sep 09 part 2.
 // Ref Hillegass Ch 03 including challenge pg 63, Ch 04.
 // SB Replaced deprecated NSCalendarDate.
-// Used NSCalendar, NSDate, and NSDateComponents.
+// Used NSCalendar, NSDate, and NSDateComponents instead.
 
 #import <Foundation/Foundation.h>
 #import "LotteryEntry.h"
@@ -15,7 +16,8 @@ int main (int argc, const char * argv[]) {
     
     NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
     
-    //Create the date object
+    // Create the date object.
+    // [[NSDate alloc] init] and [NSDate date] both return current date and time.
     NSDate *now = [[NSDate alloc] init];
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     NSDateComponents *dateComps = [[NSDateComponents alloc] init];
@@ -29,9 +31,10 @@ int main (int argc, const char * argv[]) {
     for (i = 0; i < 10; i++) {
         
         // Create a NSDate object that is 'i' weeks from now
-        NSDate *iWeeksFromNow;
         [dateComps setWeek:i];
+        NSDate *iWeeksFromNow;
         iWeeksFromNow = [gregorian dateByAddingComponents:dateComps toDate:now options:0];
+        [iWeeksFromNow retain];
         
         // Create a new instance of LotteryEntry
         LotteryEntry *newEntry = [[LotteryEntry alloc]
@@ -39,6 +42,7 @@ int main (int argc, const char * argv[]) {
         
         // Add the LotteryEntry object to the array
         [array addObject:newEntry];
+        [iWeeksFromNow release];
         [newEntry release];
     }
 
