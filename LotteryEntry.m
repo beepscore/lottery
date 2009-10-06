@@ -7,12 +7,10 @@
 @implementation LotteryEntry
 
 // Override the superclass' designated initializer init.
-// If someone calls init by accident, that won't call only superclass.
-// Instead init will call 
+// If someone calls init by accident, this method will run and call
 // LotteryEntry's designated initializer initWithEntryDate:
 // Ref Hillegass pg 57
 - (id)init {
-    // init doesn't accept a date argument. Default to current date and time.
     // NSDate class method +date returns current date and time.
     return [self initWithEntryDate:[NSDate date]];
 }
@@ -25,7 +23,9 @@
         return nil;
     
     NSAssert(theDate != nil, @"Argument must be non-nil");
-    entryDate = [theDate retain];
+    // best practice- use setter accessor methods within init methods,
+    // don't assign instance variable directly
+    [self setEntryDate:theDate];
     firstNumber = (random() % 100) + 1;
     secondNumber = (random() % 100) + 1;
     return self;
@@ -33,12 +33,12 @@
 
 // accessor methods
 // setter
-- (void)setEntryDate:(NSDate *)date {
+- (void)setEntryDate:(NSDate *)aDate {
     
     // ref Hillegass pg 75-77
-    [date retain];
+    [aDate retain];
     [entryDate release];
-    entryDate = date;
+    entryDate = aDate;
 }
 
 // getters.  The method has the same name as the instance variable
@@ -57,6 +57,9 @@
     return secondNumber; 
 }
 
+// Override description method.
+// Standard practice is not to declare it in header,
+// but to use declaration from super class or NSObject.
 - (NSString *)description {
     
     // Change date format.  Ref Hillegass pg 51, 54, 63.
@@ -66,7 +69,7 @@
     [myDateFormatter setDateFormat:@"EEEE dd MMMM yyyy"];
     NSString *myDateString = [myDateFormatter stringFromDate:[self entryDate]];
     [myDateFormatter release];
-
+    
     return [NSString stringWithFormat:@"%@ = %d and %d",
             myDateString, [self firstNumber], [self secondNumber]];
 }

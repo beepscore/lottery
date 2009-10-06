@@ -5,24 +5,24 @@
 #import <Foundation/Foundation.h>
 
 @interface LotteryEntry : NSObject {
-    // instance variables    
+    // instance variables 
+    
+    // Use NSCalendar instead of deprecated NSCalendarDate.
     NSDate *entryDate;
     int firstNumber;
     int secondNumber;
 }
-// This declaration in header is optional because
-// we are overriding the parent class methods
-// - (NSString *)description;
-
-// better not to show this so readers see only designated initializer?
-//- (id)init;
 
 // designated initializer.  Ref Hillegass pg 57
 - (id)initWithEntryDate:(NSDate *)theDate;
 
+// better not to declare so readers see only designated initializer?
+// init doesn't accept a date argument. Defaults to current date and time.
+//- (id)init;
+
 // accessor methods
 // setter
-- (void)setEntryDate:(NSDate *)date;
+- (void)setEntryDate:(NSDate *)aDate;
 
 // getters
 - (NSDate *)entryDate;

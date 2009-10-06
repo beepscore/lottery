@@ -4,7 +4,7 @@
 // Steve Baker 
 // UW CP-120 Certificate in iPhone and Cocoa Development
 // Q1 Intro to Programming in Objective-C and the Cocoa Framework.
-// Homework assignment 28 Sep 09 part 2.
+// Homework assignment 1B.
 // Ref Hillegass Ch 03 including challenge pg 63, Ch 04.
 // SB Replaced deprecated NSCalendarDate.
 // Used NSCalendar, NSDate, and NSDateComponents instead.
@@ -27,14 +27,12 @@ int main (int argc, const char * argv[]) {
     NSMutableArray *array;
     array = [[NSMutableArray alloc] init];
     
-    int i;
-    for (i = 0; i < 10; i++) {
+    for (int i = 0; i < 10; i++) {
         
         // Create a NSDate object that is 'i' weeks from now
         [dateComps setWeek:i];
         NSDate *iWeeksFromNow;
         iWeeksFromNow = [gregorian dateByAddingComponents:dateComps toDate:now options:0];
-        [iWeeksFromNow retain];
         
         // Create a new instance of LotteryEntry
         LotteryEntry *newEntry = [[LotteryEntry alloc]
@@ -42,7 +40,6 @@ int main (int argc, const char * argv[]) {
         
         // Add the LotteryEntry object to the array
         [array addObject:newEntry];
-        [iWeeksFromNow release];
         [newEntry release];
     }
 
@@ -54,11 +51,12 @@ int main (int argc, const char * argv[]) {
     gregorian = nil;
     dateComps = nil;
 
-    // Fast enumerate loop print each entry
+    // Fast enumerate print each entry
     for (LotteryEntry *entryToPrint in array) {
         NSLog(@"%@", entryToPrint);
     }
-    // Done with 'array'
+    
+    // Releasing a collection such as an array releases all of its members too.
     [array release];
     array = nil;
     [pool drain];
