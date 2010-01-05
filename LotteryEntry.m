@@ -78,7 +78,7 @@
 - (void)dealloc {
     
     NSLog(@"deallocing %@", self);
-    [entryDate release];
+    [entryDate release], entryDate = nil;
     [super dealloc];
 }
 
