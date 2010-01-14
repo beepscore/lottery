@@ -9,8 +9,8 @@
     
     // Use NSCalendar instead of deprecated NSCalendarDate.
     NSDate *entryDate;
-    int firstNumber;
-    int secondNumber;
+    NSUInteger firstNumber;
+    NSUInteger secondNumber;
 }
 
 // designated initializer.  Ref Hillegass pg 57
@@ -26,7 +26,7 @@
 
 // getters
 - (NSDate *)entryDate;
-- (int)firstNumber;
-- (int)secondNumber;
+- (NSUInteger)firstNumber;
+- (NSUInteger)secondNumber;
 
 @end

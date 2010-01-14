@@ -27,7 +27,7 @@ int main (int argc, const char * argv[]) {
     NSMutableArray *array;
     array = [[NSMutableArray alloc] init];
     
-    for (int i = 0; i < 10; i++) {
+    for (NSUInteger i = 0; i < 10; i++) {
         
         // Create a NSDate object that is 'i' weeks from now
         [dateComps setWeek:i];

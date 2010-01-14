@@ -47,12 +47,12 @@
     return entryDate;
 }
 
-- (int)firstNumber {
+- (NSUInteger)firstNumber {
     
     return firstNumber; 
 }
 
-- (int)secondNumber {
+- (NSUInteger)secondNumber {
     
     return secondNumber; 
 }
